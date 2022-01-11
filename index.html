@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<!-- или ru -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <!-- 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+    <link rel="shortcut icon" href="#" type="image/x-icon"> <!-- вставить иконку -->
+    <!-- //SEO -->
+    <meta content="" name="description"> <!-- вставить ключевые слова SEO -->
+    <meta content="" name="author">
+    <title>NAME</title>
+    <!-- Подключаем normalize файл -->
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" > -->
+
+    <!-- Подключаем наш файл -->
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <style>
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="header">
+            <div class="container">
+                <div class="logo">ToDo List</div>
+                <form class="form" @submit.prevent="addList">
+                    <input type="text"
+                    v-model="inputValue"
+                    >
+                    <button class="btn" type="submit"
+                    >Add a new task</button>
+                </form>
+            </div>
+        </div>
+        <div class="container">
+            <h2>
+                <span>To Do</span>
+                <span class="mask-num">{{needDoList.length}}</span>
+            </h2>
+            <ul class="mask-list" >
+                <li v-for="(mask,ind) in needDoList"
+                :key="mask.id">
+                    <div>
+                        <input type="checkbox" :change="doCheck(mask)" v-model="mask.checked" />
+                        <span>{{mask.title}}</span>
+                        
+                    </div>
+                    <button class="btn-remove"
+                    @click="removeMask(ind)">Remove</button>
+                </li>
+            </ul>
+            <h2>
+                <span>Done</span>
+                <span class="mask-num">{{completeList.length}}</span>
+            </h2>
+            <ul class="mask-list complete-list">
+                <li v-for="(mask,ind) in completeList"
+                :key="mask.id">
+                    <div>
+                        <input type="checkbox" :change="completeCheck(mask)" v-model="mask.checked" >
+                        <span>{{mask.title}}</span>
+                    </div>
+                    <button class="btn-remove"
+                    @click="deleteCompleteCheck(mask)">Remove</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Подключаем наш файл -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="js/main.js"></script>
+    <script></script>
+</body>
+
+</html>
